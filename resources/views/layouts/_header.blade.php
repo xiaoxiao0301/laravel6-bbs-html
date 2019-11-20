@@ -21,13 +21,13 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
               <span class="user-avatar pull-left" style="margin-right:8px; margin-top:-5px;">
-                    <img src="https://s1.ax1x.com/2019/11/19/M25EMn.jpg" alt="M25EMn.jpg" border="0" class="img-responsive img-circle" width="30px" height="30px"/>
+                    <img src="{{ Auth::user()->avatar }}" alt="M25EMn.jpg" border="0" class="img-responsive img-circle" width="30px" height="30px"/>
               </span>
               {{ Auth::user()->name }}<span class="caret"></span>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown" role="menu">
-              <a class="dropdown-item" href="">个人中心</a>
-              <a class="dropdown-item" href="">编辑资料</a>
+              <a class="dropdown-item" href="{{ route('users.show', Auth::id()) }}">个人中心</a>
+              <a class="dropdown-item" href="{{ route('users.edit', Auth::id()) }}">编辑资料</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" id="logout" href="#">
                 <form action="{{ route('logout') }}" method="POST">

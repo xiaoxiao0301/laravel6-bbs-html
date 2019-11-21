@@ -21,7 +21,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
               <span class="user-avatar pull-left" style="margin-right:8px; margin-top:-5px;">
-                    <img src="{{ Auth::user()->avatar }}" alt="M25EMn.jpg" border="0" class="img-responsive img-circle" width="30px" height="30px"/>
+                    <img src="{{ Auth::user()->avatar ?? 'https://s1.ax1x.com/2019/11/19/M25EMn.jpg' }}" alt="M25EMn.jpg" border="0" class="img-responsive img-circle" width="30px" height="30px"/>
               </span>
               {{ Auth::user()->name }}<span class="caret"></span>
             </a>

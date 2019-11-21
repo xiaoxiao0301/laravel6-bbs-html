@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "53e0b5c362ae1ca31218d60c93d683f2",
+    "content-hash": "d8d60d16e4427a57ec0eb12e9a8ca2ed",
     "packages": [
         {
             "name": "caouecs/laravel-lang",
@@ -6064,6 +6064,63 @@
                 "phra"
             ],
             "time": "2015-10-13T18:44:15+00:00"
+        },
+        {
+            "name": "summerblue/generator",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/summerblue/generator.git",
+                "reference": "f7248126fb11ed49a2dcaa373377d5649c52aac7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/summerblue/generator/zipball/f7248126fb11ed49a2dcaa373377d5649c52aac7",
+                "reference": "f7248126fb11ed49a2dcaa373377d5649c52aac7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "laravel/laravel": "5.5.*",
+                "phpunit/phpunit": "~5.7"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Summerblue\\Generator\\GeneratorsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Summerblue\\Generator\\": "src/"
+                }
+            },
+            "notification-url": "https://repo.packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fernando Brito",
+                    "email": "fernandobritofl@gmail.com"
+                },
+                {
+                    "name": "Summer",
+                    "email": "summer@yousails.com"
+                }
+            ],
+            "description": "Extend Laravel 5.5's generators scaffold.",
+            "keywords": [
+                "generators",
+                "laravel",
+                "laravel5",
+                "scaffold"
+            ],
+            "time": "2018-12-23T03:55:07+00:00"
         },
         {
             "name": "symfony/filesystem",

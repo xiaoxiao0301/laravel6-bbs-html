@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d8d60d16e4427a57ec0eb12e9a8ca2ed",
+    "content-hash": "260a0b349babb9fcd02c9283f2e43814",
     "packages": [
         {
             "name": "caouecs/laravel-lang",
@@ -6067,24 +6067,24 @@
         },
         {
             "name": "summerblue/generator",
-            "version": "1.0.0",
+            "version": "6.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/summerblue/generator.git",
-                "reference": "f7248126fb11ed49a2dcaa373377d5649c52aac7"
+                "reference": "f2cec0dd70837e10d89524cd61ec904789d53e49"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/summerblue/generator/zipball/f7248126fb11ed49a2dcaa373377d5649c52aac7",
-                "reference": "f7248126fb11ed49a2dcaa373377d5649c52aac7",
+                "url": "https://api.github.com/repos/summerblue/generator/zipball/f2cec0dd70837e10d89524cd61ec904789d53e49",
+                "reference": "f2cec0dd70837e10d89524cd61ec904789d53e49",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.0.0"
             },
             "require-dev": {
-                "laravel/laravel": "5.5.*",
-                "phpunit/phpunit": "~5.7"
+                "laravel/laravel": "6.*",
+                "phpunit/phpunit": "^8.0"
             },
             "type": "library",
             "extra": {
@@ -6113,14 +6113,14 @@
                     "email": "summer@yousails.com"
                 }
             ],
-            "description": "Extend Laravel 5.5's generators scaffold.",
+            "description": "Extend Laravel's generators scaffold.",
             "keywords": [
                 "generators",
                 "laravel",
                 "laravel5",
                 "scaffold"
             ],
-            "time": "2018-12-23T03:55:07+00:00"
+            "time": "2019-09-20T01:49:10+00:00"
         },
         {
             "name": "symfony/filesystem",

@@ -17,10 +17,10 @@ class UsersTableSeeder extends Seeder
 
         // 头像假数据
         $avatars = [
-            'https://imgchr.com/i/M5K3pd',
-            'https://imgchr.com/i/M5Kn0K',
-            'https://imgchr.com/i/M5KZOx',
-            'https://imgchr.com/i/M5KMkD'
+            'https://s2.ax1x.com/2019/11/21/M5K3pd.jpg',
+            'https://s2.ax1x.com/2019/11/21/M5Kn0K.jpg',
+            'https://s2.ax1x.com/2019/11/21/M5KZOx.jpg',
+            'https://s2.ax1x.com/2019/11/21/M5KMkD.jpg'
         ];
 
         // 生成数据集合

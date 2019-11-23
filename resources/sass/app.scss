@@ -90,3 +90,9 @@ body {
 #app > div.container {
   margin-bottom: 100px;
 }
+
+@import "topic_body";
+
+.simditor-body img {
+  max-width:100%;
+}

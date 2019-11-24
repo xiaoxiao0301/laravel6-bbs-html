@@ -40,7 +40,7 @@ class UsersTableSeeder extends Seeder
         $user = User::find(1);
         $user->name = 'Xiaoxiao';
         $user->email = 'jixiao35@qq.com';
-        $user->avatar = 'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/ZqM7iaP4CR.png';
+        $user->avatar = 'https://s2.ax1x.com/2019/11/21/M5K3pd.jpg';
         $user->save();
     }
 }

@@ -25,6 +25,7 @@ class TopicsController extends Controller
     public function show(Request $request, Topic $topic)
     {
         if (!empty($topic->slug) && $topic->slug != $request->slug) {
+            session()->reflash();
             return redirect($topic->link(), 301);
         }
         return view('topics.show', compact('topic'));
@@ -42,7 +43,7 @@ class TopicsController extends Controller
 	    $topic->user_id = Auth::id();
 		$topic->save();
 
-		return redirect()->to($topic->link())->with('message', '帖子创建成功!');
+		return redirect()->to($topic->link())->with('success', '帖子创建成功!');
 	}
 
 	public function edit(Topic $topic)

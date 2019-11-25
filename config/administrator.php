@@ -97,6 +97,9 @@ return array(
             'categories',
             'topics',
         ],
+        '站点管理' => [
+            'settings.site',
+        ]
     ],
 
     /*

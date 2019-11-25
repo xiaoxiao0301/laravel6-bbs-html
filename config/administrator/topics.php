@@ -35,6 +35,10 @@ return [
         ],
         'reply_count' => [
             'title' => '评论',
+            'sortable' =>false,
+            'output' => function($value, $model) {
+                return $model->user->replies->count();
+            },
         ],
         'operation' => [
             'title'

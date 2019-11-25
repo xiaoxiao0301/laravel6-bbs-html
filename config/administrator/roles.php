@@ -18,8 +18,7 @@ return [
             'title' => '标识'
         ],
         'permissions' => [
-            'title'
-            => '权限',
+            'title'    => '权限',
             'output' => function ($value, $model) {
                 $model->load('permissions');
                 $result = [];

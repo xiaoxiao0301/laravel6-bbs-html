@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\Api\VerificationCodeRequest;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Overtrue\EasySms\EasySms;
 use Overtrue\EasySms\Exceptions\NoGatewayAvailableException;
@@ -34,7 +36,8 @@ class VerificationCodesController extends Controller
         $key = 'verificationCodes_'.Str::random(15);
         $experiAt = now()->addMinutes(10);
         // 缓存验证码 10分钟过期
-        \Cache::put($key, ['phone' => $phone, 'code' => $code], $experiAt);
+//        Log::debug('手机号缓存的key是:'.$key);
+        Cache::put($key, ['phone' => $phone, 'code' => $code], $experiAt);
 
         return $this->response->array([
             'key' => $key,

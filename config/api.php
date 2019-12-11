@@ -243,6 +243,10 @@ return [
         'sign' => [
             'expires' => env('SIGN_RATE_LIMITS_EXPIRES', 1),
             'limit' => env('SIGN_RATE_LIMITS', 10)
+        ],
+
+        'auth' => [
+            'jwt' => 'Dingo\Api\Auth\Provider\JWT',
         ]
     ]
 ];

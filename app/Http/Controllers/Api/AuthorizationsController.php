@@ -78,7 +78,7 @@ class AuthorizationsController extends Controller
 
     }
 
-    // 重新获取token 
+    // 重新获取token
     public function update()
     {
         $token = Auth::guard('api')->refresh();

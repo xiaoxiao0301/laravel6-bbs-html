@@ -39,6 +39,7 @@ class UserRequest extends Request
         return [
             'verification_key' => '短信验证码 key',
             'verification_code' => '短信验证码',
+            'introduction' => '个人简介',
         ];
     }
     public function messages()

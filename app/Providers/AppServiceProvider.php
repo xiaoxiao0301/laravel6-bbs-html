@@ -11,7 +11,11 @@ use App\Observers\ReplyObserver;
 use App\Observers\TopicObserver;
 use App\Observers\UserObserver;
 use Carbon\Carbon;
+use Dingo\Api\Facade\API;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\ServiceProvider;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,6 +33,15 @@ class AppServiceProvider extends ServiceProvider
         if (app()->isLocal()) {
             $this->app->register(\VIACreative\SudoSu\ServiceProvider::class);
         }
+
+        API::error(function (AuthorizationException $exception) {
+            abort(403, $exception->getMessage());
+        });
+
+        API::error(function (ModelNotFoundException $exception) {
+            throw new HttpException(404, '404 Not Found');
+        });
+
     }
 
     /**

@@ -9,6 +9,8 @@ use League\Fractal\TransformerAbstract;
 
 class TopicTransformer extends TransformerAbstract
 {
+    protected $availableIncludes = ['user', 'category'];
+
     public function transform(Topic $topic)
     {
         return [
@@ -26,5 +28,15 @@ class TopicTransformer extends TransformerAbstract
             'updated_at' => $topic->updated_at->toDateTimeString(),
         ];
 
+    }
+
+    public function includeUser(Topic $topic)
+    {
+        return $this->item($topic->user, new UserTransformers());
+    }
+
+    public function includeCategory(Topic $topic)
+    {
+        return $this->item($topic->category, new CategoryTransformers());
     }
 }

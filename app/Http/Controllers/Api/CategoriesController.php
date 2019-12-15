@@ -11,6 +11,7 @@ CategoriesController extends Controller
 {
     public function index()
     {
+        // 
         return $this->response->collection(Category::all(), new CategoryTransformers());
     }
 }

@@ -15,6 +15,7 @@
         "guzzlehttp/guzzle": "^6.4",
         "hieu-le/active": "^4.0",
         "intervention/image": "^2.5",
+        "jpush/jpush": "^3.6",
         "laravel/framework": "^6.2",
         "laravel/horizon": "^3.4",
         "laravel/tinker": "^1.0",

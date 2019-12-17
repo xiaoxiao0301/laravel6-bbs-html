@@ -8,8 +8,11 @@ use League\Fractal\TransformerAbstract;
 
 class UserTransformers extends TransformerAbstract
 {
+    protected $availableIncludes = ['roles'];
+
     public function transform(User $user)
     {
+
         return [
             'id' => $user->id,
             'name' => $user->name,
@@ -23,5 +26,10 @@ class UserTransformers extends TransformerAbstract
             'updated_at' => $user->updated_at->toDateTimeString(),
         ];
 
+    }
+
+    public function includeRoles(User $user)
+    {
+        return $this->collection($user->roles, new RoleTransformer());
     }
 }

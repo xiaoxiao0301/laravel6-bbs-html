@@ -51,4 +51,10 @@ class UsersController extends Controller
         return $this->response->item($user, new UserTransformers());
 
     }
+
+    // 活跃用户
+    public function activeIndex(User $user, UserTransformers $userTransformers)
+    {
+        return $this->response->collection($user->getActiveUsers(), $userTransformers);
+    }
 }

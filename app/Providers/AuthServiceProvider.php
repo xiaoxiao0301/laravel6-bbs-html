@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Models\User;
 use App\Policies\UserPolicy;
+use Carbon\Carbon;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Laravel\Passport\Passport;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -29,6 +31,13 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+        // Passport 的路由
+        Passport::routes();
+        // access_token 过期时间
+        Passport::tokensExpireIn(Carbon::now()->addDays(15));
+        // refreshTokens 过期时间
+        Passport::refreshTokensExpireIn(Carbon::now()->addDays(30));
+
 
         \Horizon::auth(function ($request) {
             // 是否是站长

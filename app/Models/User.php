@@ -10,11 +10,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Str;
+use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements MustVerifyEmailContract, JWTSubject
 {
+    use HasApiTokens;
     use Traits\LastActivedHelper;
     use Traits\ActiveUserHelper;
     use HasRoles;
@@ -112,5 +114,13 @@ class User extends Authenticatable implements MustVerifyEmailContract, JWTSubjec
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function findForPassport($username)
+    {
+        filter_var($username, FILTER_VALIDATE_EMAIL) ?
+            $credentials['email'] = $username :
+            $credentials['phone'] = $username;
+        return self::where($credentials)->first();
     }
 }

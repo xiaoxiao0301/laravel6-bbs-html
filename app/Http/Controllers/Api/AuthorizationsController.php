@@ -7,27 +7,27 @@ use App\Http\Requests\Api\SocialAuthorizationRequest;
 use App\Models\User;
 use Auth;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Log;
+use Zend\Diactoros\Response as Psr7Response;
 use Laravel\Socialite\Facades\Socialite;
-use Monolog\Handler\IFTTTHandler;
+use League\OAuth2\Server\AuthorizationServer;
+use League\OAuth2\Server\Exception\OAuthServerException;
+use Psr\Http\Message\ServerRequestInterface;
 
 class AuthorizationsController extends Controller
 {
-    public function store(AuthorizationRequest $request)
+    /**
+     * @param AuthorizationRequest $request
+     * @param AuthorizationServer $authorizationServer
+     * @param ServerRequestInterface $serverRequest
+     * @return \Psr\Http\Message\ResponseInterface|void
+     */
+    public function store(AuthorizationRequest $request, AuthorizationServer $authorizationServer, ServerRequestInterface $serverRequest)
     {
-        $username = $request->username;
-        filter_var($username, FILTER_VALIDATE_EMAIL) ?
-            $credentials['email'] = $username :
-            $credentials['phone'] = $username;
-
-        $credentials['password'] = $request->password;
-
-        if (!$token = Auth::guard('api')->attempt($credentials)) {
-//            $this->response->errorUnauthorized('用户名或者密码错误');
-            $this->response->errorUnauthorized(trans('auth.failed'));
+        try {
+            return $authorizationServer->respondToAccessTokenRequest($serverRequest, new Psr7Response)->withStatus(201);
+        } catch (OAuthServerException $exception) {
+            return $this->response->errorUnauthorized($exception->getMessage());
         }
-
-       return $this->responseWithToken($token)->setStatusCode(201);
     }
 
 
@@ -80,15 +80,24 @@ class AuthorizationsController extends Controller
     }
 
     // 重新获取token
-    public function update()
+
+    /**
+     * @param AuthorizationServer $server
+     * @param ServerRequestInterface $serverRequest
+     * @return \Psr\Http\Message\ResponseInterface|void
+     */
+    public function update(AuthorizationServer $server, ServerRequestInterface $serverRequest)
     {
-        $token = Auth::guard('api')->refresh();
-        return $this->responseWithToken($token);
+        try {
+            return $server->respondToAccessTokenRequest($serverRequest, new Psr7Response);
+        } catch (OAuthServerException $e) {
+            return $this->response->errorUnauthorized($e->getMessage());
+        }
     }
 
     public function destroy()
     {
-        Auth::guard('api')->logout();
+        $this->user()->token()->revoke();
         return $this->response->noContent();
     }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\Api\AuthorizationRequest;
 use App\Http\Requests\Api\SocialAuthorizationRequest;
+use App\Http\Requests\Api\WeappAuthorizationRequest;
 use App\Models\User;
 use Auth;
 use Illuminate\Support\Arr;
@@ -78,6 +79,55 @@ class AuthorizationsController extends Controller
         return $this->responseWithToken($token)->setStatusCode(201);
 
     }
+
+    // 微信小程序登录
+    public function weappStore(WeappAuthorizationRequest $request)
+    {
+        $code = $request->code;
+
+        // 根据code 获取微信的openid 和 session_key
+        $miniProgram = \EasyWeChat::miniProgram();
+        $data = $miniProgram->auth->session($code);
+
+        if (isset($data['errcode'])) {
+            return $this->response->errorUnauthorized('code 不正确');
+        }
+
+        // 找到openid 对应的用户
+        $user = User::where('weapp_openid', $data['openid'])->first();
+        $attributes['weixin_session_key'] = $data['session_key'];
+
+        // 未找到对应的用户需要提交用户名和密码进行用户绑定
+        if (!$user) {
+            if (!$request->username) {
+                return $this->response->errorForbidden('用户不存在');
+            }
+
+            $username = $request->username;
+            // 用户名可以是邮箱或者电话
+            filter_var($username, FILTER_VALIDATE_EMAIL) ?
+                $credentials['email'] = $username :
+                $credentials['phone'] = $username;
+            $credentials['password'] = $request->password;
+
+            // 验证用户名和密码是否正确
+            if (!Auth::guard('api')->attempt($credentials)) {
+                return $this->response->errorUnauthorized('用户名或者密码错误');
+            }
+
+            // 获取对应的用户
+            $user = Auth::guard('api')->getUser();
+            $attributes['weapp_openid'] = $data['openid'];
+        }
+
+        $user->update($attributes);
+
+        // 为对应用户创建JWT
+        $token = Auth::guard('api')->fromUser($user);
+        return $this->responseWithToken($token)->setStatusCode(201);
+
+    }
+
 
     // 重新获取token
     public function update()

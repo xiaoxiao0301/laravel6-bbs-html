@@ -2,10 +2,7 @@
 
 namespace App\Http\Requests\Api;
 
-
-use App\Http\Requests\Request;
-
-class SocialAuthorizationRequest extends Request
+class SocialAuthorizationRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.

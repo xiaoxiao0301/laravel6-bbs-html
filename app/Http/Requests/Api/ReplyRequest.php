@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests\Api;
 
-use App\Http\Requests\Request;
-
-class ReplyRequest extends Request
+class ReplyRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.

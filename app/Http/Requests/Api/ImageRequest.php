@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests\Api;
 
-use App\Http\Requests\Request;
-
-class ImageRequest extends Request
+class ImageRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.

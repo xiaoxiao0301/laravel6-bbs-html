@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests\Api;
 
-use App\Http\Requests\Request;
-
-class VerificationCodeRequest extends Request
+class VerificationCodeRequest extends FormRequest
 {
 
     /**

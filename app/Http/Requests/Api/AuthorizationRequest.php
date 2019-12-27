@@ -2,10 +2,7 @@
 
 namespace App\Http\Requests\Api;
 
-
-use App\Http\Requests\Request;
-
-class AuthorizationRequest extends Request
+class AuthorizationRequest extends FormRequest
 {
 
     /**

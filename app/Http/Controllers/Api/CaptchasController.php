@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\Api\CaptchaRequest;
+use App\Models\User;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Mews\Captcha\Captcha;
@@ -13,6 +14,11 @@ class CaptchasController extends Controller
     {
         $key = 'captcha-'.Str::random(15);
         $phone = $request->phone;
+        // 判断手机号是否已被注册
+        $users = User::where('phone', $phone)->first();
+        if ($users) {
+            return $this->response->errorForbidden('手机号已绑定其他用户,请直接登录');
+        }
         /**
          *  captchaInfo :
          *   array {

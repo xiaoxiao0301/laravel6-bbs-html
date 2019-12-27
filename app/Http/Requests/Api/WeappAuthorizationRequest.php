@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests\Api;
 
-use App\Http\Requests\Request;
-
-class WeappAuthorizationRequest extends Request
+class WeappAuthorizationRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
